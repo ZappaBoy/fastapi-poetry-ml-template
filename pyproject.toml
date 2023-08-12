@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = "Fastapi poetry ML template"
+authors = ["ZappaBoy <federico.zappone@justanother.cloud>"]
+maintainers = ["ZappaBoy <federico.zappone@justanother.cloud>"]
+readme = "README.md"
+packages = [{ include = "app" }]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+fastapi = "^0.95.1"
+fastapi-utils = "^0.2.1"
+starlette = "^0.26.1"
+pydantic = "^1.10.7"
+loguru = "^0.7.0"
+uvicorn = "^0.21.1"
+matplotlib = "^3.7.1"
+scikit-learn = "^1.2.2"
+pandas = "^2.0.2"
+requests = "^2.31.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+python-dotenv = "^1.0.0"
+httpx = "^0.24.1"
+poetry2setup = "^1.1.0"
+pytest-env = "^0.8.1"
+
+[tool.poetry.group.cpu]
+optional = true
+
+[tool.poetry.group.cpu.dependencies]
+tensorflow = { version = "^2.12.0" }
+
+[tool.poetry.group.nvidia]
+optional = true
+
+[tool.poetry.group.nvidia.dependencies]
+tensorflow = { version = "^2.12.0" }
+nvidia-cudnn-cu11 = { version = "8.6.0.163" }
+
+# NOTE: actually tensorflow-rocm is not installed using poetry due to an open issue that I tried to fix but is not yet been merged.
+# You can simply temporarily install it using pip (pip install tensorflow-rocm) until the issue will be fixed.
+#[tool.poetry.group.amd]
+#optional = true
+#
+#[tool.poetry.group.amd.dependencies]
+#tensorflow-rocm = { version = "2.12.0.560" }
+
+[tool.pytest.ini_options]
+addopts = "-s -v"
+pythonpath = [
+    "app"
+]
+env = [
+    "ENVIRONMENT=testing",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+test = "pytest:main"
+app = "app:main"

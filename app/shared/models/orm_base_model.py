@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 def to_camel_case(string: str) -> str:
@@ -7,8 +7,5 @@ def to_camel_case(string: str) -> str:
 
 
 class ORMBaseModel(BaseModel):
-    class Config:
-        orm_mode = True
-        underscore_attrs_are_private = True
-        alias_generator = to_camel_case
-        allow_population_by_field_name = True
+    model_config = ConfigDict(extra='ignore', from_attributes=True, populate_by_name=True,
+                              alias_generator=to_camel_case)

@@ -1,14 +1,14 @@
+from fastapi import APIRouter
 from fastapi_utils.cbv import cbv
-from fastapi_utils.inferring_router import InferringRouter
 
 from routes.predict.model_controller import ModelController
 from shared.utilities.logger import Logger
 
-router = InferringRouter()
+router = APIRouter()
 
 
 @cbv(router)
-class APIRouter:
+class MainRouter:
     def __init__(self):
         self.logger = Logger(self.__class__.__name__)
         self.router = router
@@ -22,4 +22,4 @@ class APIRouter:
 
     @router.get("/health/check")
     def healthcheck(self):
-        return {"Status": "Alive"}
+        return {"detail": "alive"}

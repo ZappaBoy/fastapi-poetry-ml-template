@@ -1,15 +1,14 @@
 from typing import Any
 
-from fastapi import Depends, Query
+from fastapi import Depends, Query, APIRouter
 from fastapi.openapi.models import APIKey
 from fastapi_utils.cbv import cbv
-from fastapi_utils.inferring_router import InferringRouter
 
 from routes.predict.model_service import ModelService
 from shared.deps.api_key_auth import ApiKeyAuth
 from shared.utilities.logger import Logger
 
-router = InferringRouter()
+router = APIRouter()
 
 
 @cbv(router)

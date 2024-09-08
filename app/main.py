@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.gzip import GZipMiddleware
 
-from routes.api_router import APIRouter
+from routes.main_router import MainRouter
 from services.core_service import CoreService
 from shared.middlewares.exception_handler_middleware import ExceptionHandlerMiddleware
 from shared.middlewares.list_string_flattening_middleware import QueryStringFlatteningMiddleware
@@ -26,7 +26,7 @@ def get_application() -> FastAPI:
     application.add_middleware(QueryStringFlatteningMiddleware)
     application.add_middleware(ExceptionHandlerMiddleware)
 
-    api = APIRouter()
+    api = MainRouter()
     application.include_router(
         api.router,
         prefix='/api/v1',

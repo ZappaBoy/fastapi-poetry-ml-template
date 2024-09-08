@@ -1,6 +1,6 @@
 from typing import List
 
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 from shared.models.settings.environment import Environment
 from shared.models.settings.log_level import LogLevel
@@ -14,8 +14,5 @@ class Settings(BaseSettings):
     log_level: LogLevel = LogLevel.debug
     allowed_hosts: List[str] = []
     api_key_header: str = "x-api-key"
-    api_key: str
+    api_key: str = "your_api_key"
     init_model: bool = False
-
-    class Config:
-        env_file = ".env"

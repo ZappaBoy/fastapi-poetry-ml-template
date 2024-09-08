@@ -9,17 +9,18 @@ packages = [{ include = "app" }]
 
 [tool.poetry.dependencies]
 python = ">=3.11,<3.12"
-fastapi = "^0.95.1"
-fastapi-utils = "^0.2.1"
-starlette = "^0.26.1"
-pydantic = "^1.10.7"
-loguru = "^0.7.0"
-uvicorn = "^0.21.1"
+fastapi = "0.114.0"
+fastapi-utils = "0.7.0"
+starlette = "0.38.4"
+pydantic = "2.9.0"
+loguru = "0.7.2"
+uvicorn = "0.30.6"
+pydantic-settings = "^2.4.0"
 matplotlib = "^3.7.1"
 scikit-learn = "^1.2.2"
 pandas = "^2.0.2"
 requests = "^2.31.0"
-
+tensorflow = "^2.17.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.3.1"
@@ -27,18 +28,19 @@ python-dotenv = "^1.0.0"
 httpx = "^0.24.1"
 poetry2setup = "^1.1.0"
 pytest-env = "^0.8.1"
+typing-inspect = "^0.9.0"
 
 [tool.poetry.group.cpu]
 optional = true
 
 [tool.poetry.group.cpu.dependencies]
-tensorflow = { version = "^2.12.0" }
+tensorflow = { version = "^2.13.0" }
 
 [tool.poetry.group.nvidia]
 optional = true
 
 [tool.poetry.group.nvidia.dependencies]
-tensorflow = { version = "^2.12.0" }
+tensorflow = { version = "^2.13.0" }
 nvidia-cudnn-cu11 = { version = "8.6.0.163" }
 
 # NOTE: actually tensorflow-rocm is not installed using poetry due to an open issue that I tried to fix but is not yet been merged.
@@ -47,7 +49,7 @@ nvidia-cudnn-cu11 = { version = "8.6.0.163" }
 #optional = true
 #
 #[tool.poetry.group.amd.dependencies]
-#tensorflow-rocm = { version = "2.12.0.560" }
+#tensorflow-rocm = { version = "2.13.0.600" }
 
 [tool.pytest.ini_options]
 addopts = "-s -v"
